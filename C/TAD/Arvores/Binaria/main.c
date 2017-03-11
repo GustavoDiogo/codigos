@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<stdbool.h>
 
 typedef struct ObjArvoreBinaria{
@@ -23,19 +24,23 @@ int main(int argc, char const *argv[]){
 		
 		switch(opcaoSelecionada){
 			case 0:
+			;
 				imprimirOpcoes();
 				break;
 
-			case 1:				
-				ArvoreBinaria* novaArvore = criarArvoreBinaria();
-				printf("%d\n", novaArvore.dado);
+			case 1: 
+			;				
+				ArvoreBinaria *novaArvore = criarArvoreBinaria();
+				printf("%d\n", novaArvore->dado);
 				break;
 
 			case 10:
+			;
 				sair = true;
 				break;
 
 			default:
+			;
 				printf("Por favor digite um número de 0 a 9\n");
 				printf("\n");
 				break;
@@ -68,10 +73,10 @@ ArvoreBinaria* criarArvoreBinaria(){
 	int raiz;
 	scanf("%d",&raiz);
 
-	struct ArvoreBinaria* novaArvore;
-	novaArvore = malloc(sizeof(ArvoreBinaria));
+	ArvoreBinaria* novaArvore;
+	novaArvore = (ArvoreBinaria*) malloc(sizeof(ArvoreBinaria));
 
-	novaArvore.dado = raiz;
+	novaArvore->dado = raiz;
 
 	return novaArvore;
 }
