@@ -1,15 +1,15 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-void imprimirOpcoes();
-void criarArvoreBinaria();
-
 typedef struct ObjArvoreBinaria{
 	int dado;
 	int *esq;
 	int *dir;
 
 }ArvoreBinaria;
+
+void imprimirOpcoes();
+ArvoreBinaria* criarArvoreBinaria();
 
 
 int main(int argc, char const *argv[]){	
@@ -26,9 +26,9 @@ int main(int argc, char const *argv[]){
 				imprimirOpcoes();
 				break;
 
-			case 1:
-				criarArvoreBinaria();
-				printf("%d\n", novaArvore->dado);
+			case 1:				
+				ArvoreBinaria* novaArvore = criarArvoreBinaria();
+				printf("%d\n", novaArvore.dado);
 				break;
 
 			case 10:
@@ -71,7 +71,7 @@ ArvoreBinaria* criarArvoreBinaria(){
 	struct ArvoreBinaria* novaArvore;
 	novaArvore = malloc(sizeof(ArvoreBinaria));
 
-	novaArvore->dado = raiz;
+	novaArvore.dado = raiz;
 
 	return novaArvore;
 }
