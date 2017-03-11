@@ -11,9 +11,10 @@ typedef struct ObjArvoreBinaria{
 
 void imprimirOpcoes();
 ArvoreBinaria* criarArvoreBinaria();
+void insercaoIterativa();
 
 
-int main(int argc, char const *argv[]){	
+int main(){	
 	bool sair = false;
 	int opcaoSelecionada;
 
@@ -30,8 +31,19 @@ int main(int argc, char const *argv[]){
 
 			case 1: 
 			;				
-				ArvoreBinaria *novaArvore = criarArvoreBinaria();
-				printf("%d\n", novaArvore->dado);
+				ArvoreBinaria *novaArvore = criarArvoreBinaria();				
+				break;
+			case 4:
+			;
+				if(!novaArvore){
+					printf("%d\n",novaArvore);
+					printf("%d\n",*novaArvore);
+					break;
+				}
+				else{
+					printf("Por favor, crie um Arvore antes de fazer uma insercao\n");
+					break;
+				}
 				break;
 
 			case 10:
@@ -77,6 +89,11 @@ ArvoreBinaria* criarArvoreBinaria(){
 	novaArvore = (ArvoreBinaria*) malloc(sizeof(ArvoreBinaria));
 
 	novaArvore->dado = raiz;
+	printf("Arvore Criada!\n");
 
 	return novaArvore;
+}
+
+void insercaoIterativa(int dado){
+
 }
