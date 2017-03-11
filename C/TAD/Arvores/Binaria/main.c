@@ -11,8 +11,14 @@ typedef struct ObjArvoreBinaria{
 
 void imprimirOpcoes();
 ArvoreBinaria* criarArvoreBinaria();
+void buscarRecursiva();
+void buscaIterativa();
 void insercaoIterativa();
-
+void insercaoRecursiva();
+void remocao();
+void percursoPre();
+void percursoIn();
+void percursoPos();
 
 int main(){	
 	bool sair = false;
@@ -38,8 +44,8 @@ int main(){
 			case 4:
 			;
 				if(novaArvore){
-					printf("%d\n",novaArvore);
-					printf("%d\n",*novaArvore);
+					printf("%d\n",novaArvore->dir);
+					insercaoIterativa();
 					break;
 				}
 				else{
@@ -55,7 +61,7 @@ int main(){
 
 			default:
 			;
-				printf("Por favor digite um número de 0 a 9\n");
+				printf("Opcao invalida, digite 0 para ver todas as opcoes validas\n");
 				printf("\n");
 				break;
 		}
@@ -91,11 +97,16 @@ ArvoreBinaria* criarArvoreBinaria(){
 	novaArvore = (ArvoreBinaria*) malloc(sizeof(ArvoreBinaria));
 
 	novaArvore->dado = raiz;
+	novaArvore->esq = NULL;
+	novaArvore->dir = 30;
 	printf("Arvore Criada!\n");
 
 	return novaArvore;
 }
 
-void insercaoIterativa(int dado){
+void insercaoIterativa(){
+	printf("Digite o valor de insercao\n");
+	int valor;
 
+	scanf("%d",&valor);
 }
