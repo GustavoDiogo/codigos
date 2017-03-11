@@ -17,7 +17,7 @@ void insercaoIterativa();
 int main(){	
 	bool sair = false;
 	int opcaoSelecionada;
-	ArvoreBinaria *novaArvore;
+	ArvoreBinaria *novaArvore = NULL;
 
 	imprimirOpcoes();
 
@@ -32,11 +32,12 @@ int main(){
 
 			case 1: 
 			;				
-					novaArvore = criarArvoreBinaria();				
+				novaArvore = criarArvoreBinaria();				
 				break;
+
 			case 4:
 			;
-				if(novaArvore != NULL){
+				if(novaArvore){
 					printf("%d\n",novaArvore);
 					printf("%d\n",*novaArvore);
 					break;
