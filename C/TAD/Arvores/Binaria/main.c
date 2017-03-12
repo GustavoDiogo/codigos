@@ -25,7 +25,7 @@ void remocao();
 void percursoPre();
 void percursoIn();
 void percursoPos();
-void verifica();
+void status();
 
 int main(){	
 	bool sair = false;
@@ -45,10 +45,6 @@ int main(){
 			case 0:
 			;
 				imprimirOpcoes();
-				break;
-
-			case 2:
-				verifica(novoNo);
 				break;
 
 			case 3:
@@ -72,10 +68,14 @@ int main(){
 				sair = true;
 				break;
 
+			case 11:
+			;
+				status(novoNo);
+				break;
+
 			default:
 			;
-				printf("Opcao invalida, digite 0 para ver todas as opcoes validas\n");
-				printf("\n");
+				printf("Opcao invalida, digite 0 para ver todas as opcoes validas\n\n");				
 				break;
 		}
 		
@@ -85,7 +85,7 @@ int main(){
 }
 
 void imprimirOpcoes(){
-	printf("Opcoes de Manipulacao da Arvore Binaria de Busca\n");
+	printf("--------------------- Arvore Binaria de Busca ---------------------\n");
 	printf("0-Mostrar essas opcoes novamente\n");
 	printf("1-Busca Recursiva\n");
 	printf("2-Busca Iterativa\n");
@@ -95,9 +95,9 @@ void imprimirOpcoes(){
 	printf("6-Percurso pre-ordem\n");
 	printf("7-Percurso in-ordem\n");
 	printf("8-Percurso pos-ordem\n");
-	printf("------------------------\n");
-	printf("9 - Sair/Fechar o programa\n");
-	printf("\n");
+	printf("-------------------------------------------------------------------\n");
+	printf("11 - Checa o status do ultimo nó\n");
+	printf("9 - Sair/Fechar o programa\n\n");
 }
 
 No insercaoIterativa(No **paiRaiz, int valorInserido){
@@ -112,9 +112,7 @@ No insercaoIterativa(No **paiRaiz, int valorInserido){
 
 	while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido){
 		pai = (*paiRaiz);
-
-		printf("plei\n");
-
+		
 		if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
 
 		else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
@@ -126,9 +124,7 @@ No insercaoIterativa(No **paiRaiz, int valorInserido){
 		(*paiRaiz)->esq = NULL;
 		(*paiRaiz)->dir = NULL;
 		(*paiRaiz)->numero = valorInserido;
-
-		printf("plau\n");
-
+		
 		if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
 
 		else pai->dir = (*paiRaiz);	
@@ -154,8 +150,11 @@ void insercaoRecursiva(No **paiRaiz, int valorInserido){
 	}
 }
 
-void verifica(No **paiRaiz){
-		printf("O do seu nó atual é %d\n", (*paiRaiz)->numero);
+void status(No **paiRaiz){
+	if(*paiRaiz != NULL){
+		printf("O valor do seu nó atual é %d\n", (*paiRaiz)->numero);
 		printf("O & do filho esquerdo é %d\n",(*paiRaiz)->esq);
 		printf("O & do filho direito é %d\n",(*paiRaiz)->dir);
+	}
+	else printf("Use algum metodo de insercao antes de checar o status\n\n");
 }
