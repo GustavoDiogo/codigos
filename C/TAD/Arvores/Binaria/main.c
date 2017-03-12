@@ -111,11 +111,13 @@ void insercaoIterativa(No **paiRaiz, int valorInserido){
 	while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido){
 		pai = (*paiRaiz);
 
+		printf("plei\n");
+
 		if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
 
 		else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
-		
-	}	
+
+	}
 
 	if(*paiRaiz == NULL){
 		*paiRaiz = (No*) malloc(sizeof(No));
