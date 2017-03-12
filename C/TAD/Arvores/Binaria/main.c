@@ -2,15 +2,23 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-typedef struct ObjArvoreBinaria{
-	int dado;
-	int *esq;
-	int *dir;
+/*
+	notes:
 
-}ArvoreBinaria;
+	//novoNo->dir = (int *) malloc(30*sizeof(int));
+*/
+
+struct No{
+	int numero;
+	struct No *esq;
+	struct No *dir;
+
+};
+typedef struct No No;
 
 void imprimirOpcoes();
-ArvoreBinaria* criarArvoreBinaria();
+void criarArvore();
+No* criarNo();
 void buscarRecursiva();
 void buscaIterativa();
 void insercaoIterativa();
@@ -23,7 +31,9 @@ void percursoPos();
 int main(){	
 	bool sair = false;
 	int opcaoSelecionada;
-	ArvoreBinaria *novaArvore = NULL;
+	No *novoNo = NULL;
+	novoNo = (No*) malloc(sizeof(No));
+	criarArvore(novoNo);
 
 	imprimirOpcoes();
 
@@ -36,25 +46,16 @@ int main(){
 				imprimirOpcoes();
 				break;
 
-			case 1: 
-			;				
-				novaArvore = criarArvoreBinaria();				
-				break;
-
 			case 4:
 			;
-				if(novaArvore){
-					printf("%d\n",novaArvore->dir);
-					insercaoIterativa();
-					break;
-				}
-				else{
-					printf("Por favor, crie um Arvore antes de fazer uma insercao\n");
-					break;
-				}
-				break;
+				printf("Digite o valor de insercao\n");	
+				int valor;
+				scanf("%d",&valor);
 
-			case 10:
+				insercaoRecursiva(novoNo,valor);		
+				break;
+				
+			case 9:
 			;
 				sair = true;
 				break;
@@ -74,39 +75,55 @@ int main(){
 void imprimirOpcoes(){
 	printf("Opcoes de Manipulacao da Arvore Binaria de Busca\n");
 	printf("0-Mostrar essas opcoes novamente\n");
-	printf("1-Criar uma Arvore Binaria\n");
-	printf("2-Busca Recursiva\n");
-	printf("3-Busca Iterativa\n");
-	printf("4-Insercao Iterativa\n");
-	printf("5-Insercao Recursiva\n");	
-	printf("6-Remocao\n");
-	printf("7-Percurso pre-ordem\n");
-	printf("8-Percurso in-ordem\n");
-	printf("9-Percurso pos-ordem\n");
+	printf("1-Busca Recursiva\n");
+	printf("2-Busca Iterativa\n");
+	printf("3-Insercao Iterativa\n");
+	printf("4-Insercao Recursiva\n");	
+	printf("5-Remocao\n");
+	printf("6-Percurso pre-ordem\n");
+	printf("7-Percurso in-ordem\n");
+	printf("8-Percurso pos-ordem\n");
 	printf("------------------------\n");
-	printf("10 - Sair/Fechar o programa\n");
+	printf("9 - Sair/Fechar o programa\n");
 	printf("\n");
 }
-
-ArvoreBinaria* criarArvoreBinaria(){
+void criarArvore(No **raiz){
+	*raiz = NULL;
+}
+/*
+No* criarNo(){
 	printf("Digite o valor da raiz\n");
 	int raiz;
 	scanf("%d",&raiz);
 
-	ArvoreBinaria* novaArvore;
-	novaArvore = (ArvoreBinaria*) malloc(sizeof(ArvoreBinaria));
+	No* novoNo;
+	novoNo = (No*) malloc(sizeof(No));
 
-	novaArvore->dado = raiz;
-	novaArvore->esq = NULL;
-	novaArvore->dir = 30;
+	novoNo->numero = raiz;
+	novoNo->esq = NULL;
+	novoNo->dir = NULL;
 	printf("Arvore Criada!\n");
+	printf("\n");
 
-	return novaArvore;
-}
+	return novoNo;
+}*/
 
-void insercaoIterativa(){
-	printf("Digite o valor de insercao\n");
-	int valor;
+void insercaoRecursiva(No **raiz, int valor){
+	if(*raiz == NULL){
+		*raiz = (No*) malloc(sizeof(No));
+		(*raiz)->esq = NULL;
+		(*raiz)->dir = NULL;
+		(*raiz)->numero = valor;	
+	}
+	else{
 
-	scanf("%d",&valor);
+		if(valor < (*raiz)->numero) insercaoRecursiva(&(*raiz)->esq, valor);
+
+		else if(valor > (*raiz)->numero) insercaoRecursiva(&(*raiz)->dir, valor);
+
+		else printf("O elemento já existe!\n");	
+	}
+	printf("O lado esquerdo é %d\n",(*raiz)->esq);
+	printf("O lado direito é %d\n",(*raiz)->dir);
+
 }
