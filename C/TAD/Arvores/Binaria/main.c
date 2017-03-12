@@ -10,7 +10,6 @@
 
 struct No{
 	int numero;
-	bool valida;
 	struct No *esq;
 	struct No *dir;
 
@@ -18,10 +17,9 @@ struct No{
 typedef struct No No;
 
 void imprimirOpcoes();
-void criarArvore();
 void buscarRecursiva();
 void buscaIterativa();
-void insercaoIterativa();
+No insercaoIterativa();
 void insercaoRecursiva();
 void remocao();
 void percursoPre();
@@ -36,7 +34,7 @@ int main(){
 
 	No *novoNo = NULL;
 	novoNo = (No*) malloc(sizeof(No));
-	criarArvore(novoNo);
+	
 
 	imprimirOpcoes();
 
@@ -102,50 +100,45 @@ void imprimirOpcoes(){
 	printf("\n");
 }
 
-void criarArvore(No **paiRaiz){
-	(*paiRaiz)->valida = true;
-}
- 
-void insercaoIterativa(No **paiRaiz, int valorInserido){
+No insercaoIterativa(No **paiRaiz, int valorInserido){
 	No *pai;
 
-	if((*paiRaiz)->valida = true){
-
-		do{
-			pai = (*paiRaiz);
-
-			printf("plei\n");
-
-			if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
-
-			else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
-
-		}while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido);
-
-		if(*paiRaiz == NULL){
-			*paiRaiz = (No*) malloc(sizeof(No));
-			(*paiRaiz)->esq = NULL;
-			(*paiRaiz)->dir = NULL;
-			(*paiRaiz)->numero = valorInserido;
-
-			printf("plau\n");
-
-			if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
-
-			else pai->dir = (*paiRaiz);	
-		}
-	}
-	else{
+	if(*paiRaiz == NULL){
 		*paiRaiz = (No*) malloc(sizeof(No));
 		(*paiRaiz)->esq = NULL;
 		(*paiRaiz)->dir = NULL;
 		(*paiRaiz)->numero = valorInserido;
 	}
+
+	while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido){
+		pai = (*paiRaiz);
+
+		printf("plei\n");
+
+		if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
+
+		else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
+
+	};
+	
+	if(*paiRaiz == NULL){
+		*paiRaiz = (No*) malloc(sizeof(No));
+		(*paiRaiz)->esq = NULL;
+		(*paiRaiz)->dir = NULL;
+		(*paiRaiz)->numero = valorInserido;
+
+		printf("plau\n");
+
+		if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
+
+		else pai->dir = (*paiRaiz);	
+
+		(*paiRaiz) = pai;
+	}
 }
 
 
 void insercaoRecursiva(No **paiRaiz, int valorInserido){
-
 	if(*paiRaiz == NULL){
 		*paiRaiz = (No*) malloc(sizeof(No));
 		(*paiRaiz)->esq = NULL;
@@ -162,7 +155,7 @@ void insercaoRecursiva(No **paiRaiz, int valorInserido){
 }
 
 void verifica(No **paiRaiz){
-		printf("A paiRaiz ATUAL EH %d\n", (*paiRaiz)->numero);
-		printf("O lado esquerdo é %d\n",(*paiRaiz)->esq);
-		printf("O lado direito é %d\n",(*paiRaiz)->dir);
+		printf("O do seu nó atual é %d\n", (*paiRaiz)->numero);
+		printf("O & do filho esquerdo é %d\n",(*paiRaiz)->esq);
+		printf("O & do filho direito é %d\n",(*paiRaiz)->dir);
 }
