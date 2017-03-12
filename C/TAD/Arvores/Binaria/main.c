@@ -10,6 +10,7 @@
 
 struct No{
 	int numero;
+	bool valida;
 	struct No *esq;
 	struct No *dir;
 
@@ -102,40 +103,49 @@ void imprimirOpcoes(){
 }
 
 void criarArvore(No **paiRaiz){
-	*paiRaiz = NULL;
+	(*paiRaiz)->valida = true;
 }
-
+ 
 void insercaoIterativa(No **paiRaiz, int valorInserido){
 	No *pai;
 
-	while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido){
-		pai = (*paiRaiz);
+	if((*paiRaiz)->valida = true){
 
-		printf("plei\n");
+		do{
+			pai = (*paiRaiz);
 
-		if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
+			printf("plei\n");
 
-		else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
+			if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
 
+			else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
+
+		}while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido);
+
+		if(*paiRaiz == NULL){
+			*paiRaiz = (No*) malloc(sizeof(No));
+			(*paiRaiz)->esq = NULL;
+			(*paiRaiz)->dir = NULL;
+			(*paiRaiz)->numero = valorInserido;
+
+			printf("plau\n");
+
+			if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
+
+			else pai->dir = (*paiRaiz);	
+		}
 	}
-
-	if(*paiRaiz == NULL){
+	else{
 		*paiRaiz = (No*) malloc(sizeof(No));
 		(*paiRaiz)->esq = NULL;
 		(*paiRaiz)->dir = NULL;
 		(*paiRaiz)->numero = valorInserido;
-
-		printf("plau\n");
-
-		if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
-
-		else pai->dir = (*paiRaiz);	
 	}
-	(*paiRaiz) = pai;
 }
 
 
 void insercaoRecursiva(No **paiRaiz, int valorInserido){
+
 	if(*paiRaiz == NULL){
 		*paiRaiz = (No*) malloc(sizeof(No));
 		(*paiRaiz)->esq = NULL;
