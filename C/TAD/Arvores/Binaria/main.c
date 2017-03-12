@@ -101,58 +101,55 @@ void imprimirOpcoes(){
 	printf("\n");
 }
 
-void criarArvore(No **raiz){
-	*raiz = NULL;
+void criarArvore(No **paiRaiz){
+	*paiRaiz = NULL;
 }
 
-void insercaoIterativa(No **raiz, int valorInserido){
+void insercaoIterativa(No **paiRaiz, int valorInserido){
 	No *pai;
 
-	while((*raiz) != NULL && (*raiz)->numero != valorInserido){
-		pai = (*raiz);
+	while((*paiRaiz) != NULL && (*paiRaiz)->numero != valorInserido){
+		pai = (*paiRaiz);
 
-		if(valorInserido < (*raiz)->numero) (*raiz) = (*raiz)->esq;
+		if(valorInserido < (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->esq;
 
-		else if(valorInserido > (*raiz)->numero) (*raiz) = (*raiz)->dir;
-
-		else printf("O valor já existe!\n");
-
-		printf("plei\n");
+		else if(valorInserido > (*paiRaiz)->numero) (*paiRaiz) = (*paiRaiz)->dir;
+		
 	}	
 
-	if(*raiz == NULL){
-		*raiz = (No*) malloc(sizeof(No));
-		(*raiz)->esq = NULL;
-		(*raiz)->dir = NULL;
-		(*raiz)->numero = valorInserido;
+	if(*paiRaiz == NULL){
+		*paiRaiz = (No*) malloc(sizeof(No));
+		(*paiRaiz)->esq = NULL;
+		(*paiRaiz)->dir = NULL;
+		(*paiRaiz)->numero = valorInserido;
 
 		printf("plau\n");
 
-		if(valorInserido < pai->numero) pai->esq = (*raiz);
+		if(valorInserido < pai->numero) pai->esq = (*paiRaiz);
 
-		else pai->dir = (*raiz);	
+		else pai->dir = (*paiRaiz);	
 	}
 }
 
 
-void insercaoRecursiva(No **raiz, int valorInserido){
-	if(*raiz == NULL){
-		*raiz = (No*) malloc(sizeof(No));
-		(*raiz)->esq = NULL;
-		(*raiz)->dir = NULL;
-		(*raiz)->numero = valorInserido;	
+void insercaoRecursiva(No **paiRaiz, int valorInserido){
+	if(*paiRaiz == NULL){
+		*paiRaiz = (No*) malloc(sizeof(No));
+		(*paiRaiz)->esq = NULL;
+		(*paiRaiz)->dir = NULL;
+		(*paiRaiz)->numero = valorInserido;	
 	}
 	else{
-		if(valorInserido < (*raiz)->numero) insercaoRecursiva(&(*raiz)->esq, valorInserido);
+		if(valorInserido < (*paiRaiz)->numero) insercaoRecursiva(&(*paiRaiz)->esq, valorInserido);
 
-		else if(valorInserido > (*raiz)->numero) insercaoRecursiva(&(*raiz)->dir, valorInserido);
+		else if(valorInserido > (*paiRaiz)->numero) insercaoRecursiva(&(*paiRaiz)->dir, valorInserido);
 
 		else printf("O valor já existe!\n");
 	}
 }
 
-void verifica(No **raiz){
-		printf("A RAIZ ATUAL EH %d\n", (*raiz)->numero);
-		printf("O lado esquerdo é %d\n",(*raiz)->esq);
-		printf("O lado direito é %d\n",(*raiz)->dir);
+void verifica(No **paiRaiz){
+		printf("A paiRaiz ATUAL EH %d\n", (*paiRaiz)->numero);
+		printf("O lado esquerdo é %d\n",(*paiRaiz)->esq);
+		printf("O lado direito é %d\n",(*paiRaiz)->dir);
 }
