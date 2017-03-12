@@ -131,6 +131,7 @@ void insercaoIterativa(No **paiRaiz, int valorInserido){
 
 		else pai->dir = (*paiRaiz);	
 	}
+	(*paiRaiz) = pai;
 }
 
 
