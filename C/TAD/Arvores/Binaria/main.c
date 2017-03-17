@@ -5,7 +5,7 @@
 /*
 	notes:
 
-	//novoNo->dir = (int *) malloc(30*sizeof(int));
+	//Arvore->dir = (int *) malloc(30*sizeof(int));
 */
 
 struct No{
@@ -17,7 +17,7 @@ struct No{
 typedef struct No No;
 
 void imprimirOpcoes();
-void buscarRecursiva();
+void buscaRecursiva();
 void buscaIterativa();
 No insercaoIterativa();
 void insercaoRecursiva();
@@ -32,8 +32,8 @@ int main(){
 	int opcaoSelecionada;
 	int valorInserido;
 
-	No *novoNo = NULL;
-	novoNo = (No*) malloc(sizeof(No));
+	No *Arvore = NULL;
+	Arvore = (No*) malloc(sizeof(No));
 	
 
 	imprimirOpcoes();
@@ -46,13 +46,20 @@ int main(){
 			;
 				imprimirOpcoes();
 				break;
+			case 1:
+			;
+				printf("Digite o valor para Busca Recursiva\n");
+				scanf("%d",&valorInserido);
+
+				buscaRecursiva(Arvore, valorInserido);
+				break;
 
 			case 3:
 			;
 				printf("Digite o valor para Insercao Iterativa\n");	
 				scanf("%d",&valorInserido);
 
-				insercaoIterativa(novoNo,valorInserido);	
+				insercaoIterativa(Arvore,valorInserido);	
 				break;	
 
 			case 4:
@@ -60,7 +67,7 @@ int main(){
 				printf("Digite o valor para Insercao Recursiva\n");	
 				scanf("%d",&valorInserido);
 
-				insercaoRecursiva(novoNo,valorInserido);		
+				insercaoRecursiva(Arvore,valorInserido);		
 				break;
 				
 			case 9:
@@ -70,7 +77,7 @@ int main(){
 
 			case 11:
 			;
-				status(novoNo);
+				status(Arvore);
 				break;
 
 			default:
@@ -82,6 +89,20 @@ int main(){
 	}
 
 	return 0;
+}
+
+void buscaRecursiva(No **paiRaiz, int valorInserido){
+	if(*paiRaiz != NULL){
+		if(valorInserido < (*paiRaiz)->numero) buscaRecursiva(&(*paiRaiz)->esq, valorInserido);
+			
+		else if(valorInserido > (*paiRaiz)->numero) buscaRecursiva(&(*paiRaiz)->dir, valorInserido);
+
+		else if(valorInserido == (*paiRaiz)->numero) printf("O valor %d existe na Arvore\n", (*paiRaiz)->numero);
+				
+	}
+	else{
+		printf("O valor não existe na Arvore\n");
+	}
 }
 
 void imprimirOpcoes(){
