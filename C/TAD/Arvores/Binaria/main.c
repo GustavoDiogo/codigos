@@ -19,7 +19,7 @@ typedef struct No No;
 void imprimirOpcoes();
 void buscaRecursiva();
 void buscaIterativa();
-No insercaoIterativa();
+void insercaoIterativa();
 void insercaoRecursiva();
 void remocao();
 void percursoPre();
@@ -121,7 +121,7 @@ void imprimirOpcoes(){
 	printf("9 - Sair/Fechar o programa\n\n");
 }
 
-No insercaoIterativa(No **paiRaiz, int valorInserido){
+void insercaoIterativa(No **paiRaiz, int valorInserido){
 	No *pai;
 
 	if(*paiRaiz == NULL){
