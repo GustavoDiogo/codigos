@@ -54,6 +54,14 @@ int main(){
 				buscaRecursiva(Arvore, valorInserido);
 				break;
 
+			case 2:
+			;
+				printf("Digite o valor para Busca Iterativa\n");
+				scanf("%d",&valorInserido);
+
+				buscaIterativa(Arvore, valorInserido);
+				break;
+
 			case 3:
 			;
 				printf("Digite o valor para Insercao Iterativa\n");	
@@ -90,13 +98,21 @@ int main(){
 
 	return 0;
 }
+void buscaIterativa(No **paiRaiz, int valorInserido){
+	while((*paiRaiz)->numero != valorInserido){
+		if(valorInserido < (*paiRaiz)->numero) *paiRaiz = (*paiRaiz)->esq;
+		else if(valorInserido > (*paiRaiz)->numero) *paiRaiz = (*paiRaiz)->dir;
+		else if(valorInserido == (*paiRaiz)->numero) printf("O valor %d existe na Arvore\n", (*paiRaiz)->numero);
+		else printf("O valor não existe na Arvore\n");
+
+	}
+
+}
 
 void buscaRecursiva(No **paiRaiz, int valorInserido){
 	if(*paiRaiz != NULL){
-		if(valorInserido < (*paiRaiz)->numero) buscaRecursiva(&(*paiRaiz)->esq, valorInserido);
-			
+		if(valorInserido < (*paiRaiz)->numero) buscaRecursiva(&(*paiRaiz)->esq, valorInserido);			
 		else if(valorInserido > (*paiRaiz)->numero) buscaRecursiva(&(*paiRaiz)->dir, valorInserido);
-
 		else if(valorInserido == (*paiRaiz)->numero) printf("O valor %d existe na Arvore\n", (*paiRaiz)->numero);
 				
 	}
