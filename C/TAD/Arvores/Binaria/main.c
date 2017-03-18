@@ -99,12 +99,22 @@ int main(){
 	return 0;
 }
 void buscaIterativa(No **paiRaiz, int valorInserido){
-	while((*paiRaiz)->numero != valorInserido){
-		if(valorInserido < (*paiRaiz)->numero) *paiRaiz = (*paiRaiz)->esq;
-		else if(valorInserido > (*paiRaiz)->numero) *paiRaiz = (*paiRaiz)->dir;
-		else if(valorInserido == (*paiRaiz)->numero) printf("O valor %d existe na Arvore\n", (*paiRaiz)->numero);
-		else printf("O valor não existe na Arvore\n");
+	No *copiaPaiRaiz = *paiRaiz;
 
+	bool procurando = true;
+	while(procurando){
+		if(copiaPaiRaiz != NULL){
+			if(valorInserido < copiaPaiRaiz->numero) copiaPaiRaiz = copiaPaiRaiz->esq;
+			else if(valorInserido > copiaPaiRaiz->numero) copiaPaiRaiz = copiaPaiRaiz->dir;
+			else if(valorInserido == copiaPaiRaiz->numero){
+				procurando = false;
+				printf("O valor %d existe na Arvore\n", copiaPaiRaiz->numero);
+			} 		
+		}		
+		else{
+			procurando = false;
+			printf("O valor não existe na Arvore\n");
+		} 
 	}
 
 }
