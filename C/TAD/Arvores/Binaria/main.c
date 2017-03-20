@@ -27,7 +27,6 @@ No *remocao();
 void percursoPre();
 void percursoIn();
 void percursoPos();
-void status();
 
 int main(){	
 	bool sair = false;
@@ -109,11 +108,6 @@ int main(){
 				sair = true;
 				break;
 
-			case 11:
-			;
-				status(Arvore);
-				break;
-
 			default:
 			;
 				printf("Opcao invalida, digite 0 para ver todas as opcoes validas\n\n");				
@@ -137,7 +131,6 @@ void imprimirOpcoes(){
 	printf("7-Percurso in-ordem\n");
 	printf("8-Percurso pos-ordem\n");
 	printf("-------------------------------------------------------------------\n");
-	printf("11 - Checa o status do ultimo nó\n");
 	printf("9 - Sair/Fechar o programa\n\n");
 }
 
@@ -289,13 +282,4 @@ void percursoPos(No **paiRaiz){
 		percursoPos(&(*paiRaiz)->dir);
 		printf("%d ", (*paiRaiz)->numero);
 	}
-}
-
-void status(No **paiRaiz){
-	if(*paiRaiz != NULL){
-		printf("O valor do seu nó atual é %d\n", (*paiRaiz)->numero);
-		printf("O & do filho esquerdo é %d\n",(*paiRaiz)->esq);
-		printf("O & do filho direito é %d\n",(*paiRaiz)->dir);
-	}
-	else printf("Use algum metodo de insercao antes de checar o status\n\n");
 }
